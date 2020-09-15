@@ -1,5 +1,5 @@
 <div class="loading" *ngIf="!loading">
-    <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE"></p-progressSpinner>
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-progress-spinner-color" strokeWidth="8" fill="#EEEEEE"></p-progressSpinner>
 </div>
 <div class="listeAppointments" *ngIf="loading">
     <p-orderList [value]="listAppointments" [listStyle]="{'height':'250px'}" (onSelectionChange)="selectItem($event)" header={{titre}}>

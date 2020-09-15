@@ -29,8 +29,7 @@ export class AppComponent implements OnInit {
       this.listAppointmentsATraiter = new Array();
       this.listAppointmentsAVenir = new Array();
       ListAppointments.forEach(data  => {
-        console.log(data);
-        if (data.status =='booked' && new Date(data.start) >= new Date(Date.now())) {
+        if(data.status=="booked" && new Date(data.start) >= new Date(Date.now())){
           this.listAppointmentsAVenir.push(data);
         } else if (data.status =='pending' && new Date(data.start) >= new Date(Date.now())) {
           this.listAppointmentsATraiter.push(data);

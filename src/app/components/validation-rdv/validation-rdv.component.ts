@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Appointment, AppointmentResponse, Reference } from 'src/app/rest/restData';
-import { AppointmentResponseService } from 'src/app/services/appointment-response.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AppointmentService } from 'src/app/services/appointment.service';
+import {AppointmentResponseService} from 'src/app/services/appointment-response.service';
 
 
 @Component({
@@ -14,16 +15,15 @@ export class ValidationRdvComponent implements OnInit {
   @Input()
   appointment: Appointment;
 
-  constructor(private appRespService: AppointmentResponseService) { }
+  constructor(private appRespService: AppointmentResponseService, private appService: AppointmentService) { }
 
   ngOnInit(): void {
-    this.appointment =  {} as Appointment;
   }
 
   initAppointmentResponse(): AppointmentResponse {
     const app = {...this.appointment};
 
-    const appResp = new AppointmentResponse();
+    let appResp = new AppointmentResponse();
     appResp.resourceType = 'AppointmentResponse';
     appResp.id = uuidv4();
     appResp.appointment = new Reference();
@@ -41,12 +41,7 @@ export class ValidationRdvComponent implements OnInit {
   validateAppointment() {
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'accepted';
-
-    console.log('Retour post', this.appRespService.createAppointmentResponse(appResp));
-
-
-
-    // this.appRespService.createAppointmentResponse();
+    this.appRespService.createAppointmentResponse(appResp);
   }
 
 }

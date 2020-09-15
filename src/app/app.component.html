@@ -6,6 +6,4 @@
     <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)"></app-calendar>
     <app-calendar class="componentCalendar" [listAppointments]="listAppointmentsAVenir" [titre]="titreListeValide" [loading]="loading"></app-calendar>
 </div>
-<div style="float: right;">
-  <app-validation-rdv [appointment]="appointmentSelected"></app-validation-rdv>
-</div>
+<app-validation-rdv class="card" [appointment]="appointmentSelected"></app-validation-rdv>
