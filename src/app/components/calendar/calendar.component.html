@@ -1,5 +1,5 @@
-<div class="listeAppointments">
-    <p-orderList [value]="ListAppointments" [listStyle]="{'height':'250px'}" (onSelectionChange)="selectItem($event)" header={{Titre}}>
+<div class="listeAppointments" *ngIf="loading">
+    <p-orderList [value]="listAppointments" [listStyle]="{'height':'250px'}" (onSelectionChange)="selectItem($event)" header={{titre}}>
         <ng-template let-item pTemplate="item">
             <div class="item-item">
                 <div class="item-list-detail" style="font-size:small">

@@ -11,11 +11,11 @@ import { PractitionerService } from './services/practitioner.service';
 })
 
 export class AppComponent implements OnInit{
-  ListAppointmentsATraiter : Array<Appointment>;
-  ListAppointmentsAVenir : Array<Appointment>;
+  listAppointmentsATraiter : Array<Appointment>;
+  listAppointmentsAVenir : Array<Appointment>;
   practitioner : Practitioner;
-  TitreListeAtraiter :string = "RDV à traiter";
-  TitreListeValide : string ="RDV à venir";
+  titreListeAtraiter :string = "RDV à traiter";
+  titreListeValide : string ="RDV à venir";
   appointmentSelected: Appointment;
 
   constructor(private appService: AppointmentService, private practitionerService: PractitionerService) {
@@ -25,21 +25,17 @@ export class AppComponent implements OnInit{
     let ListAppointments: Array<Appointment>;
     this.appService.getAppointments("MedP1").subscribe(data => {
       ListAppointments = data.sort((a, b) => new Date (a.start).getTime()-new Date(b.start).getTime());
-      this.ListAppointmentsATraiter = new Array();
-      this.ListAppointmentsAVenir = new Array();
+      this.listAppointmentsATraiter = new Array();
+      this.listAppointmentsAVenir = new Array();
       ListAppointments.forEach(data  => {
         if(data.status=="booked"){
-          this.ListAppointmentsAVenir.push(data);
+          this.listAppointmentsAVenir.push(data);
         }else{
-          this.ListAppointmentsATraiter.push(data);
+          this.listAppointmentsATraiter.push(data);
         }
       })
     });
     this.practitionerService.getPractioner('MedP1').subscribe(p => this.practitioner = p);
-
-
-
-
   }
   getSelectedAppointment(event) {
     this.appointmentSelected = event;

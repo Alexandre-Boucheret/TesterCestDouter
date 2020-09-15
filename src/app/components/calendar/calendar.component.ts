@@ -15,10 +15,11 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 
 export class CalendarComponent implements OnInit {
 
-  @Input() ListAppointments : Array<Appointment>;
-  @Input() Titre : string;
-  options : any;
+  @Input() listAppointments : Array<Appointment>;
+  @Input() titre : string;
   @Output() selectedAppointment: EventEmitter<Appointment> = new EventEmitter();
+  options : any;
+  @Input() loading : boolean = false;
 
   constructor(private appService: AppointmentService) {
 
