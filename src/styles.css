@@ -18,3 +18,8 @@
 .componentCalendar{
     margin : 5px;
 }
+
+.p-card {
+    width: 600px !important;
+    margin: 5px !important;
+}

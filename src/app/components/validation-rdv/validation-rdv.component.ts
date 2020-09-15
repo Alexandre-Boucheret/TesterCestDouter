@@ -19,16 +19,31 @@ export class ValidationRdvComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  validateAppointment() {
+  initAppointmentResponse(): AppointmentResponse {
+    const app = {...this.appointment};
+
     const appResp = new AppointmentResponse();
+    appResp.resourceType = 'AppointmentResponse';
     appResp.id = uuidv4();
     appResp.appointment = new Reference();
     appResp.appointment.reference = 'Apppointment/' + this.appointment.id;
+    appResp.actor = new Reference();
     this.appointment.participant.forEach(participant => {
       if (participant.actor.reference.startsWith('Patient')) {
-        appResp.actor.reference = participant.actor.reference;;
+        appResp.actor.reference = participant.actor.reference;
       }
     });
+
+    return appResp;
+  }
+
+  validateAppointment() {
+    const appResp = this.initAppointmentResponse();
+    appResp.participantStatus = 'accepted';
+
+    console.log('Retour post', this.appRespService.createAppointmentResponse(appResp));
+
+
 
     // this.appRespService.createAppointmentResponse();
   }
