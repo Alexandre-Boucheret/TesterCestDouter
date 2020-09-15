@@ -45,10 +45,9 @@ export class ValidationRdvComponent implements OnInit {
   }
 
   refuseAppointment(){
-    // this.initResponse();
-    // this.response.participantStatus = "decline";
-
-    //this.appResponseService.createAppointmentResponse(this.response);
+    const appResp = this.initAppointmentResponse();
+    appResp.participantStatus = 'decline';
+    this.appRespService.createAppointmentResponse(appResp);
   }
 
 }
