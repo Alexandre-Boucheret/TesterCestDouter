@@ -17,7 +17,6 @@ export class AppComponent implements OnInit{
   titreListeAtraiter :string = "RDV à traiter";
   titreListeValide : string ="RDV à venir";
   appointmentSelected: Appointment;
-  loading : boolean = false;
 
   constructor(private appService: AppointmentService, private practitionerService: PractitionerService) {
   }
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit{
           this.listAppointmentsATraiter.push(data);
         }
       })
-      this.loading=true;
     });
     this.practitionerService.getPractioner('MedP1').subscribe(p => this.practitioner = p);
   }
