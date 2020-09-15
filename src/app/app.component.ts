@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from './rest/restData';
 import { AppointmentService } from 'src/app/services/appointment.service';
+import { Practitioner } from './rest/restData';
+import { PractitionerService } from './services/practitioner.service'
 
 @Component({
   selector: 'app-root',
@@ -9,15 +11,16 @@ import { AppointmentService } from 'src/app/services/appointment.service';
 })
 export class AppComponent implements OnInit{
   ListAppointments : Array<Appointment>;
+  practitioner : Practitioner;
 
-  constructor(private appService : AppointmentService) {
-    
+  constructor(private appService : AppointmentService, private practitionerService: PractitionerService) {  
   }
 
   ngOnInit(): void {
     this.appService.getAppointments("MedP1").subscribe(data => {
       this.ListAppointments = data;
-    })
+    });
+    this.practitionerService.getPractioner("MedP1").subscribe(p => this.practitioner = p);
   }
-}
 
+}

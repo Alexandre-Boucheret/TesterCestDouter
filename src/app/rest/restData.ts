@@ -64,3 +64,34 @@ export interface Text {
     status: string;
     div:    string;
 }
+
+export interface Practitioner {
+    resourceType: string;
+    id:           string;
+    text:         Text;
+    identifier:   Identifier[];
+    name:         Name[];
+    telecom:      Identifier[];
+    address:      Address[];
+    gender:       string;
+    birthDate:    Date;
+}
+
+export interface Address {
+    use:        string;
+    line:       string[];
+    city:       string;
+    postalCode: string;
+    country:    string;
+}
+
+export interface Identifier {
+    use:    string;
+    system: string;
+    value:  string;
+}
+
+export interface Name {
+    use:  string;
+    text: string;
+}
