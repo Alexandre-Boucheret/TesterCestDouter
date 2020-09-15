@@ -14,7 +14,7 @@ import { Output } from '@angular/core';
 export class ValidationRdvComponent implements OnInit {
 
   @Input() appointment: Appointment;
-  @Output() selectedAppointment: EventEmitter<Appointment> = new EventEmitter();
+  @Output() refreshListes: EventEmitter<Appointment> = new EventEmitter();
 
   constructor(private appRespService: AppointmentResponseService, private appService: AppointmentService) { }
 
@@ -43,9 +43,10 @@ export class ValidationRdvComponent implements OnInit {
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'accepted';
     this.appointment.status = 'booked';
-    this.selectedAppointment.emit(this.appointment); // on envoie le nouvel appointment
-    // this.appService.putAppointment(this.appointment);
-    // this.appRespService.createAppointmentResponse(appResp);
+
+    this.appService.putAppointment(this.appointment);
+    this.appRespService.createAppointmentResponse(appResp);
+    this.refreshListes.emit(this.appointment); 
     
     this.appointment = null;
   }
@@ -54,9 +55,11 @@ export class ValidationRdvComponent implements OnInit {
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'declined';
     this.appointment.status = 'cancelled';
-    this.selectedAppointment.emit(this.appointment);// on envoie le nouvel appointment
-    // this.appService.putAppointment(this.appointment);
-    // this.appRespService.createAppointmentResponse(appResp);
+
+    this.appService.putAppointment(this.appointment);
+    this.appRespService.createAppointmentResponse(appResp);
+    this.refreshListes.emit(this.appointment);
+    
     this.appointment = null;
   }
 

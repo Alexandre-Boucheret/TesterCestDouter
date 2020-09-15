@@ -6,4 +6,4 @@
     <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)"></app-calendar>
     <app-calendar class="componentCalendar" [listAppointments]="listAppointmentsAVenir" [titre]="titreListeValide" [loading]="loading"></app-calendar>
 </div>
-<app-validation-rdv class="card" [appointment]="appointmentSelected" (selectedAppointment)="getAppointmentTreatment($event)" ></app-validation-rdv>
+<app-validation-rdv class="card" [appointment]="appointmentSelected" (refreshListes)="refreshListes()" ></app-validation-rdv>

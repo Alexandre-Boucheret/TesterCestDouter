@@ -39,17 +39,24 @@ export class AppComponent implements OnInit {
     });
     this.practitionerService.getPractioner('MedP1').subscribe(p => this.practitioner = p);
   }
+  
   getSelectedAppointment(event) {
     this.appointmentSelected = event;
   }
 
-  getAppointmentTreatment(event){
-    for(let i = 0;i < this.listAppointmentsATraiter.length;i++){
-      if(this.listAppointmentsATraiter[i].id==event.id && event.status=='booked'){
-        this.listAppointmentsAVenir.push(this.listAppointmentsATraiter.splice(i,1)[0]);
-      }else if(this.listAppointmentsATraiter[i].id==event.id && event.status=='cancelled'){
-        this.listAppointmentsATraiter.splice(i,1);
-      }
-    }
+  refreshListes(){
+    this.appService.getAppointments('MedP1').subscribe(data => {
+      var listAppointments = data.sort((a, b) => new Date (a.start).getTime() - new Date(b.start).getTime());
+      this.listAppointmentsATraiter = new Array();
+      this.listAppointmentsAVenir = new Array();
+      listAppointments.forEach(data  => {
+        if(data.status=="booked" && new Date(data.start) >= new Date(Date.now())){
+          this.listAppointmentsAVenir.push(data);
+        } else if (data.status =='pending' && new Date(data.start) >= new Date(Date.now())) {
+          this.listAppointmentsATraiter.push(data);
+        }
+      });
+    });
   }
+
 }
