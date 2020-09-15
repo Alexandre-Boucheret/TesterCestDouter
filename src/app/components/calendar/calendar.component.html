@@ -1,11 +1,10 @@
 <div class="listeAppointments">
-    <p-orderList [value]="ListAppointments" [listStyle]="{'height':'auto'}" header="Liste des rendez-vous">
+    <p-orderList [value]="ListAppointments" [listStyle]="{'height':'250px'}" header="Liste des rendez-vous">
         <ng-template let-item pTemplate="item">
             <div class="item-item">
-                <div class="item-list-detail">
-                    <h5 class="p-mb-2">{{item.start | date:'medium'}}</h5>
-                    <i class="pi pi-tag product-category-icon"></i>
-                    <span class="product-category">{{item.description}}</span>
+                <div class="item-list-detail" style="font-size:small">
+                    <i *ngIf="item.status=='pending'" class="pi pi-exclamation-triangle"></i><i *ngIf="item.status=='booked'" class="pi pi-check-circle"></i>&nbsp;<span class="p-mb-2"><b>{{item.start | date:'medium'}}, {{item.participant[0].actor.display}}</b></span>
+                    <span class="product-category"><br/>{{item.description}}</span>
                 </div>
             </div>
         </ng-template>
