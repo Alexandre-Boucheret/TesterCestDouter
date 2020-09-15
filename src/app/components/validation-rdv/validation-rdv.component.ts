@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Appointment, AppointmentResponse, Reference } from 'src/app/rest/restData';
 import { v4 as uuidv4 } from 'uuid';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import {AppointmentResponseService} from 'src/app/services/appointment-response.service';
+import { Output } from '@angular/core';
 
 
 @Component({
@@ -12,8 +13,8 @@ import {AppointmentResponseService} from 'src/app/services/appointment-response.
 })
 export class ValidationRdvComponent implements OnInit {
 
-  @Input()
-  appointment: Appointment;
+  @Input() appointment: Appointment;
+  @Output() selectedAppointment: EventEmitter<Appointment> = new EventEmitter();
 
   constructor(private appRespService: AppointmentResponseService, private appService: AppointmentService) { }
 
@@ -41,13 +42,22 @@ export class ValidationRdvComponent implements OnInit {
   validateAppointment() {
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'accepted';
-    this.appRespService.createAppointmentResponse(appResp);
+    this.appointment.status = 'booked';
+    this.selectedAppointment.emit(this.appointment); // on envoie le nouvel appointment
+    // this.appService.putAppointment(this.appointment);
+    // this.appRespService.createAppointmentResponse(appResp);
+    
+    this.appointment = null;
   }
 
   refuseAppointment(){
     const appResp = this.initAppointmentResponse();
-    appResp.participantStatus = 'decline';
-    this.appRespService.createAppointmentResponse(appResp);
+    appResp.participantStatus = 'declined';
+    this.appointment.status = 'cancelled';
+    this.selectedAppointment.emit(this.appointment);// on envoie le nouvel appointment
+    // this.appService.putAppointment(this.appointment);
+    // this.appRespService.createAppointmentResponse(appResp);
+    this.appointment = null;
   }
 
 }

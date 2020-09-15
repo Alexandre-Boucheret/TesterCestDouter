@@ -39,8 +39,18 @@ export class AppComponent implements OnInit {
     });
     this.practitionerService.getPractioner('MedP1').subscribe(p => this.practitioner = p);
   }
+
   getSelectedAppointment(event) {
-    console.log('Appointment dans app.component getSelectedAppointment :', event );
     this.appointmentSelected = event;
+  }
+
+  getAppointmentTreatment(event){
+    for(let i = 0;i < this.listAppointmentsATraiter.length;i++){
+      if(this.listAppointmentsATraiter[i].id==event.id && event.status=='booked'){
+        this.listAppointmentsAVenir.push(this.listAppointmentsATraiter.splice(i,1)[0]);
+      }else if(this.listAppointmentsATraiter[i].id==event.id && event.status=='cancelled'){
+        this.listAppointmentsATraiter.splice(i,1);
+      }
+    }
   }
 }

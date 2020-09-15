@@ -45,7 +45,6 @@ export class CalendarComponent implements OnInit {
 }
 
 selectItem(event) {
-  console.log('TEST DE LA LECTURE D\'APPOINTMENT :', event.value[0]);
   this.selectedAppointment.emit(event.value[0]);
 }
 

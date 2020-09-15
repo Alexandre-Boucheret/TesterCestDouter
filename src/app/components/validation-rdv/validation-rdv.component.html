@@ -1,4 +1,4 @@
-<p-card *ngIf="appointment.participant!==undefined && appointment.participant!==null">
+<p-card *ngIf="appointment">
   <div >
     <div>
       <label>Rendez-vous du {{appointment.start | date:'medium'}} au {{appointment.end | date:'medium'}}</label>
@@ -9,7 +9,7 @@
     <div>
       <p>{{appointment.description}}</p>
     </div>
-    <button pButton pRipple type="button" label="Refuser" class="p-button-outlined p-button-danger" (click)="refuseAppointment()"></button>
-    <button pButton pRipple type="button" label="Valider" class="p-button-success" (click)="validateAppointment()"></button>
+    <button style="margin:5px" pButton pRipple type="button" label="Refuser" class="p-button-outlined p-button-danger" (click)="refuseAppointment()"></button>
+    <button style="margin:5px" pButton pRipple type="button" label="Valider" class="p-button-success" (click)="validateAppointment()"></button>
   </div>
 </p-card>

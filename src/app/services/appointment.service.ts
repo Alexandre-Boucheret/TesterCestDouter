@@ -23,7 +23,9 @@ export class AppointmentService {
   }
 
   putAppointment(appointment : Appointment){
-    this.http.put<Appointment>(environment.baseApiUrl+'appointment',appointment, {headers : this.setHeaders('application/json')});
+    this.http.put<Appointment>(environment.baseApiUrl+'appointment',appointment, {headers : this.setHeaders('application/json')}).subscribe(data => {
+      
+    });
   }
 
  
