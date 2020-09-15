@@ -12,12 +12,14 @@ import { ValidationRdvComponent } from './components/validation-rdv/validation-r
 import { AppointmentService } from './services/appointment.service';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
+import { FullcalendarComponent } from './components/fullcalendar/fullcalendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     ValidationRdvComponent,
+    FullcalendarComponent,
   ],
   imports: [
     BrowserModule,
