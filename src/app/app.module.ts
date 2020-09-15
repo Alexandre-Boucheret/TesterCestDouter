@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { AppointmentService} from './services/appointment.service';
 import { HttpClientModule } from '@angular/common/http';
+import {OrderListModule} from 'primeng/orderlist';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FullCalendarModule,
-    HttpClientModule 
+    HttpClientModule,
+    OrderListModule
   ],
   providers: [
     AppointmentService,

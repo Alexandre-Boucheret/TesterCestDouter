@@ -1,4 +1,13 @@
-<!-- <p-fullCalendar  [options]="options"></p-fullCalendar> -->
-<ul>
-    <li *ngFor="let item of ListAppointments">{{item.resourceType}} </li>
-</ul>
+<div class="listeAppointments">
+    <p-orderList [value]="ListAppointments" [listStyle]="{'height':'auto'}" header="Liste des rendez-vous">
+        <ng-template let-item pTemplate="item">
+            <div class="item-item">
+                <div class="item-list-detail">
+                    <h5 class="p-mb-2">{{item.start | date:'medium'}}</h5>
+                    <i class="pi pi-tag product-category-icon"></i>
+                    <span class="product-category">{{item.description}}</span>
+                </div>
+            </div>
+        </ng-template>
+    </p-orderList>
+</div>
