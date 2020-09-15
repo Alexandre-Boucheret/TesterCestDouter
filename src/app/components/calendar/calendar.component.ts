@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { AppointmentService } from 'src/app/services/appointment.service';
+import { Appointment } from 'src/app/rest/restData';
 
 
 @Component({
@@ -11,9 +13,16 @@ import interactionPlugin from '@fullcalendar/interaction';
 })
 export class CalendarComponent implements OnInit {
   options : any;
-  constructor() { }
+  
+  ListAppointments : Array<Appointment>;
+
+  constructor(private appService : AppointmentService) {
+    
+   }
 
   ngOnInit(): void {
+    
+    this.ListAppointments = this.appService.getAppointmentsPractitioner("MedP1");
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       header: {
@@ -29,6 +38,5 @@ export class CalendarComponent implements OnInit {
       locale: 'fr',
       firstDay : 1
   }
-
 }
 }
