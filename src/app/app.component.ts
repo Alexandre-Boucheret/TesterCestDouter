@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.appService.getAppointments("MedP1").subscribe(data => {
-      this.ListAppointments = data;
+      this.ListAppointments = data.sort((a, b) => new Date (a.start).getTime()-new Date(b.start).getTime());
     });
     this.practitionerService.getPractioner("MedP1").subscribe(p => this.practitioner = p);
   }
