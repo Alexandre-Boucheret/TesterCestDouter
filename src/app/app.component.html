@@ -3,7 +3,7 @@
     <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
 </div>
 <div style="display: inline-flex;">
-    <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter"></app-calendar>
-    <app-calendar class="componentCalendar" [listAppointments]="listAppointmentsAVenir" [titre]="titreListeValide"></app-calendar>
+    <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter" [loading]="loading"></app-calendar>
+    <app-calendar class="componentCalendar" [listAppointments]="listAppointmentsAVenir" [titre]="titreListeValide" [loading]="loading"></app-calendar>
 </div>
 <app-validation-rdv [appointment]="appointmentSelected"></app-validation-rdv>

@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { ValidationRdvComponent } from './components/validation-rdv/validation-rdv.component';
 import { AppointmentService } from './services/appointment.service';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AppointmentService } from './services/appointment.service';
     AppRoutingModule,
     FullCalendarModule,
     HttpClientModule,
-    OrderListModule
+    OrderListModule,
+    ProgressSpinnerModule
   ],
   providers: [
     AppointmentService,

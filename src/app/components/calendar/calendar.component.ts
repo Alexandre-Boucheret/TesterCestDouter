@@ -19,7 +19,7 @@ export class CalendarComponent implements OnInit {
   @Input() titre : string;
   @Output() selectedAppointment: EventEmitter<Appointment> = new EventEmitter();
   options : any;
-  @Input() loading : boolean = false;
+  @Input() loading : boolean;
 
   constructor(private appService: AppointmentService) {
 
