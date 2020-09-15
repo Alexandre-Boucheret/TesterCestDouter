@@ -1,0 +1,14 @@
+<div>
+  <div *ngIf="appointment.participant!==undefined && appointment.participant!==null">
+    <div>
+      <label>Rendez-vous du {{appointment.start | date:'medium'}} au {{appointment.end | date:'medium'}}</label>
+    </div>
+    <div>
+      <label>Patient : {{appointment.participant[0].actor.display}}</label>
+    </div>
+    <div>
+      <p>{{appointment.description}}</p>
+    </div>
+    <button>Valider</button>
+  </div>
+</div>

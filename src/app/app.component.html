@@ -1,3 +1,4 @@
+
 <div>
     <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
 </div>
@@ -5,3 +6,4 @@
     <app-calendar class="componentCalendar"  [ListAppointments]="ListAppointmentsATraiter" [Titre]="TitreListeAtraiter"></app-calendar>
     <app-calendar class="componentCalendar" [ListAppointments]="ListAppointmentsAVenir" [Titre]="TitreListeValide"></app-calendar>
 </div>
+<app-validation-rdv [appointment]="appointmentSelected"></app-validation-rdv>

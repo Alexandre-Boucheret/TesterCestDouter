@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from './rest/restData';
 import { AppointmentService } from 'src/app/services/appointment.service';
-import { Practitioner } from './rest/restData';
-import { PractitionerService } from './services/practitioner.service'
+
+import { Appointment, Practitioner } from './rest/restData';
+import { PractitionerService } from './services/practitioner.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit{
   ListAppointmentsATraiter : Array<Appointment>;
   ListAppointmentsAVenir : Array<Appointment>;
   practitioner : Practitioner;
   TitreListeAtraiter :string = "RDV à traiter";
   TitreListeValide : string ="RDV à venir";
+  appointmentSelected: Appointment;
 
-  constructor(private appService : AppointmentService, private practitionerService: PractitionerService) {  
+  constructor(private appService: AppointmentService, private practitionerService: PractitionerService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +35,13 @@ export class AppComponent implements OnInit{
         }
       })
     });
-    this.practitionerService.getPractioner("MedP1").subscribe(p => this.practitioner = p);
-  }
+    this.practitionerService.getPractioner('MedP1').subscribe(p => this.practitioner = p);
 
+
+
+
+  }
+  getSelectedAppointment(event) {
+    this.appointmentSelected = event;
+  }
 }
