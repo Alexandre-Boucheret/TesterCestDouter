@@ -39,7 +39,6 @@ export class AppComponent implements OnInit {
     });
     this.practitionerService.getPractioner('MedP1').subscribe(p => this.practitioner = p);
   }
-
   getSelectedAppointment(event) {
     this.appointmentSelected = event;
   }
