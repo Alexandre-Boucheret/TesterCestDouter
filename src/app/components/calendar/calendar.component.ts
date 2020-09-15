@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { AppointmentService } from 'src/app/services/appointment.service';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import { Appointment } from 'src/app/rest/restData';
+import { AppointmentService } from 'src/app/services/appointment.service';
 
 
 @Component({
@@ -14,13 +14,14 @@ import { Appointment } from 'src/app/rest/restData';
 
 
 export class CalendarComponent implements OnInit {
-  @Input() ListAppointments : Array<Appointment>;
-  options : any;
-  
-  
+  @Input() ListAppointments: Array<Appointment>;
+  options: any;
 
-  constructor(private appService : AppointmentService) {
-    
+
+  @Output() selectedAppointment: EventEmitter<Appointment> = new EventEmitter();
+
+  constructor(private appService: AppointmentService) {
+
    }
 
   ngOnInit(): void {
@@ -38,6 +39,12 @@ export class CalendarComponent implements OnInit {
       },
       locale: 'fr',
       firstDay : 1
-  }
+  };
 }
+
+selectItem(event) {
+  console.log('TEST DE LA LECTURE D\'APPOINTMENT :', event.value[0]);
+  this.selectedAppointment.emit(event.value[0]);
+}
+
 }

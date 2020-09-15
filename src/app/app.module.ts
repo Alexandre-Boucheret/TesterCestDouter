@@ -1,17 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {FullCalendarModule} from 'primeng/fullcalendar';
+import { BrowserModule } from '@angular/platform-browser';
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import { OrderListModule } from 'primeng/orderlist';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { AppointmentService} from './services/appointment.service';
-import { HttpClientModule } from '@angular/common/http';
-import {OrderListModule} from 'primeng/orderlist';
+import { ValidationRdvComponent } from './components/validation-rdv/validation-rdv.component';
+import { AppointmentService } from './services/appointment.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
+    ValidationRdvComponent,
   ],
   imports: [
     BrowserModule,

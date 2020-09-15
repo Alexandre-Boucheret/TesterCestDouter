@@ -1,2 +1,6 @@
 <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
-<app-calendar [ListAppointments]="ListAppointments"></app-calendar>
+<div style="display: flex; flex-direction: row; align-items: center;">
+  <app-calendar [ListAppointments]="ListAppointments" (selectedAppointment)="getSelectedAppointment($event)"></app-calendar>
+  <!-- <app-calendar></app-calendar> -->
+  <app-validation-rdv [appointment]="appointmentSelected"></app-validation-rdv>
+</div>
