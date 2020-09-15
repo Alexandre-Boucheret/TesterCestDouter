@@ -17,7 +17,6 @@ export class ValidationRdvComponent implements OnInit {
   constructor(private appRespService: AppointmentResponseService) { }
 
   ngOnInit(): void {
-    this.appointment =  {} as Appointment;
   }
 
   validateAppointment() {
@@ -27,13 +26,18 @@ export class ValidationRdvComponent implements OnInit {
     appResp.appointment.reference = 'Apppointment/' + this.appointment.id;
     this.appointment.participant.forEach(participant => {
       if (participant.actor.reference.startsWith('Patient')) {
-        let str = '';
-        str = participant.actor.reference;
-        appResp.actor.reference = 'Patient/' + str;
+        appResp.actor.reference = participant.actor.reference;;
       }
     });
 
     // this.appRespService.createAppointmentResponse();
+  }
+
+  refuseAppointment(){
+    // this.initResponse();
+    // this.response.participantStatus = "decline";
+
+    //this.appResponseService.createAppointmentResponse(this.response);
   }
 
 }
