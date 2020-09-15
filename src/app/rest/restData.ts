@@ -1,4 +1,4 @@
-export interface Appointment {
+export class Appointment {
     id: string;
     text: Text;
     resourceType: string;
@@ -16,56 +16,56 @@ export interface Appointment {
     participant: Participant[];
 }
 
-export interface AppointmentType {
+export class AppointmentType {
     coding: AppointmentTypeCoding[];
 }
 
-export interface AppointmentTypeCoding {
+export class AppointmentTypeCoding {
     system: string;
     code: string;
     display: string;
 }
 
-export interface Participant {
+export class Participant {
     actor: Reference;
     required: string;
     status: string;
     type?: Type[];
 }
 
-export interface Reference {
+export class Reference {
     reference: string;
-    display: string;
+    display?: string;
     identifier?: ServiceCategory;
 }
 
-export interface ServiceCategory {
+export class ServiceCategory {
 }
 
-export interface Type {
+export class Type {
     coding: TypeCoding[];
 }
 
-export interface TypeCoding {
+export class TypeCoding {
     system: string;
     code: string;
 }
 
-export interface ServiceType {
+export class ServiceType {
     coding: ServiceTypeCoding[];
 }
 
-export interface ServiceTypeCoding {
+export class ServiceTypeCoding {
     code: string;
     display: string;
 }
 
-export interface Text {
+export class Text {
     status: string;
     div: string;
 }
 
-export interface Practitioner {
+export class Practitioner {
     resourceType: string;
     id: string;
     text: Text;
@@ -77,7 +77,7 @@ export interface Practitioner {
     birthDate: Date;
 }
 
-export interface Address {
+export class Address {
     use: string;
     line: string[];
     city: string;
@@ -85,18 +85,19 @@ export interface Address {
     country: string;
 }
 
-export interface Identifier {
+export class Identifier {
     use: string;
     system: string;
     value: string;
 }
 
-export interface Name {
+export class Name {
     use: string;
     text: string;
 }
 
-export interface AppointmentResponse {
+export class AppointmentResponse {
+  appResp: any;
   resourceType: string;
   id: string;
   text: Text;

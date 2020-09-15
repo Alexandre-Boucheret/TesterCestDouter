@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CardModule } from 'primeng/card';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { OrderListModule } from 'primeng/orderlist';
 
@@ -21,6 +22,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     BrowserModule,
     AppRoutingModule,
     FullCalendarModule,
+    CardModule,
     HttpClientModule,
     OrderListModule,
     ProgressSpinnerModule
