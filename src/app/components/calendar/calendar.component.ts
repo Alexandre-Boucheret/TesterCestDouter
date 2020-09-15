@@ -15,6 +15,7 @@ import { Appointment } from 'src/app/rest/restData';
 
 export class CalendarComponent implements OnInit {
   @Input() ListAppointments : Array<Appointment>;
+  @Input() Titre : string;
   options : any;
   
   

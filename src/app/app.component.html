@@ -1,2 +1,7 @@
-<span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
-<app-calendar [ListAppointments]="ListAppointments"></app-calendar>
+<div>
+    <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
+</div>
+<div style="display: inline-flex;">
+    <app-calendar class="componentCalendar"  [ListAppointments]="ListAppointmentsATraiter" [Titre]="TitreListeAtraiter"></app-calendar>
+    <app-calendar class="componentCalendar" [ListAppointments]="ListAppointmentsAVenir" [Titre]="TitreListeValide"></app-calendar>
+</div>
