@@ -16,7 +16,6 @@ export class AppointmentResponseService {
     }
 
   createAppointmentResponse(appointmentResponse: AppointmentResponse) {
-    console.log(appointmentResponse);
      this.http.post<AppointmentResponse>(environment.baseApiUrl + 'appointment-response', appointmentResponse,{
       headers: this.setHeaders('application/json')});
   }

@@ -1,4 +1,4 @@
-<p-card *ngIf="appointment.participant!==undefined && appointment.participant!==null">
+<p-card *ngIf="appointment!==undefined && appointment!==null && appointment.participant!==undefined && appointment.participant!==null">
   <div >
     <div>
       <label>Rendez-vous du {{appointment.start | date:'medium'}} au {{appointment.end | date:'medium'}}</label>
