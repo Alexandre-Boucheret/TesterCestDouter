@@ -1,12 +1,18 @@
-
 <div>
-    <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
+  <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
 </div>
-<div style="display: inline-flex;">
-    <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)"></app-calendar>
-    <app-calendar class="componentCalendar" [listAppointments]="listAppointmentsAVenir" [titre]="titreListeValide" [loading]="loading"></app-calendar>
-    <div>
-        <app-fullcalendar *ngIf="listAppointmentsAVenir" [listAppointments]="listAppointmentsAVenir"></app-fullcalendar>
-    </div>
+<div style="display: flex; flex-direction: row;">
+  <div class="container">
+    <app-calendar class="componentCalendar appointmentProposed" [listAppointments]="listAppointmentsATraiter"
+      [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)">
+    </app-calendar>
+    <app-calendar class="componentCalendar appointmentBooked" [listAppointments]="listAppointmentsAVenir"
+      [titre]="titreListeValide" [loading]="loading"></app-calendar>
+    <app-validation-rdv class="card validationBox" [appointment]="appointmentSelected"
+      (refreshListes)="refreshListes()">
+    </app-validation-rdv>
+  </div>
+  <div>
+    <app-fullcalendar></app-fullcalendar>
+  </div>
 </div>
-<app-validation-rdv class="card" [appointment]="appointmentSelected" (refreshListes)="refreshListes()" ></app-validation-rdv>
