@@ -1,6 +1,6 @@
 
 <div>
-    <span>{{practitioner?.name[0].text}} ({{practitioner?.identifier[0].value}})</span>
+    <p-dropdown [options]="practitioners" [(ngModel)]="practitioner" optionLabel="name" (onChange)="selectedPractitionerChanged($event)"></p-dropdown>
 </div>
 <div style="display: inline-flex;">
     <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)"></app-calendar>

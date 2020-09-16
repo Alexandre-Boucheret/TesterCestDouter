@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { OrderListModule } from 'primeng/orderlist';
@@ -13,6 +14,8 @@ import { AppointmentService } from './services/appointment.service';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import { FullcalendarComponent } from './components/fullcalendar/fullcalendar.component';
+import {DropdownModule} from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import { FullcalendarComponent } from './components/fullcalendar/fullcalendar.co
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FullCalendarModule,
+    FormsModule,
     CardModule,
     HttpClientModule,
     OrderListModule,
     ProgressSpinnerModule,
-    ButtonModule
+    ButtonModule,
+    DropdownModule
   ],
   providers: [
     AppointmentService,
