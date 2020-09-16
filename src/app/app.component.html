@@ -13,6 +13,6 @@
     </app-validation-rdv>
   </div>
   <div>
-    <app-fullcalendar></app-fullcalendar>
+    <app-fullcalendar *ngIf="listAppointmentsAVenir"[listAppointmentsPending]="listAppointmentsATraiter" [listAppointmentsBooked]="listAppointmentsAVenir" ></app-fullcalendar>
   </div>
 </div>

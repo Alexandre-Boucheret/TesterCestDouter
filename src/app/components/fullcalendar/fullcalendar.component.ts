@@ -10,7 +10,8 @@ import { Appointment } from 'src/app/rest/restData';
   styleUrls: ['./fullcalendar.component.css']
 })
 export class FullcalendarComponent implements OnInit, OnChanges {
-  @Input() listAppointments : Array<Appointment>;
+  @Input() listAppointmentsPending : Array<Appointment>;
+  @Input() listAppointmentsBooked : Array<Appointment>;
   events: any[];
   options : any;
   constructor() { 
@@ -49,11 +50,19 @@ export class FullcalendarComponent implements OnInit, OnChanges {
 
   initEvents(){
     this.events = [];
-    this.listAppointments.forEach(a => {
+    let color;
+    this.listAppointmentsBooked.concat(this.listAppointmentsPending).forEach(a => {
+      if(a.status==='booked'){
+        color = "#333fff"
+      }else{
+        color="#a9a9b4"
+      }
       this.events = [...this.events, {
         "title": a.description,
         "start": a.start,
-        "end": a.end
+        "end": a.end,
+        "backgroundColor": color,
+        "borderColor" : color
       }];
     });
   }
