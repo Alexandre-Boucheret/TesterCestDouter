@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setInterval(() => { this.refreshListes(); }, 20000);
     let ListAppointments: Array<Appointment>;
     this.practitionerService.getPractioners().subscribe(p => {
       this.practitioners = new Array();
