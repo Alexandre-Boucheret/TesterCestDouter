@@ -20,26 +20,11 @@ export class CalendarComponent implements OnInit,OnChanges {
 
 
 
-  constructor(private appService: AppointmentService,private patientService : PatientService ) {
+  constructor(private appService: AppointmentService) {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.listAppointments){
       if(this.listAppointments){
-        this.listAppointments.forEach(d => {
-          d.participant.forEach(participant =>{
-            if(participant.actor.reference.split("/")[0]==='Patient'){
-              let  patient : string ='';
-              this.patientService.getPatient(participant.actor.reference).subscribe(data => {
-                data.name[0].given.forEach(name => {
-                  patient += " " + name;
-                });
-                participant.actor.display = patient;
-              })
-              
-            }
-          })
-          console.log(d);
-        })
       }
     }
   }

@@ -31,7 +31,7 @@ export class FullcalendarComponent implements OnInit, OnChanges {
         month:    'mois',
         week:     'semaine'
       },
-      height: 500,
+      height: 650,
       locale: 'fr',
       firstDay : 1,
       businessHours: {      
@@ -59,7 +59,7 @@ export class FullcalendarComponent implements OnInit, OnChanges {
         color="#a9a9b4"
       }
       this.events = [...this.events, {
-        "title": a.description,
+        "title": a.comment + " " +a.participant[0].actor.display,
         "start": a.start,
         "end": a.end,
         "backgroundColor": color,
