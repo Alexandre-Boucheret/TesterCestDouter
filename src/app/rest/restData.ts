@@ -104,4 +104,18 @@ export class AppointmentResponse {
   appointment: Reference;
   actor: Reference;
   participantStatus: string;
+  comment : string;
+}
+
+export class Patient {
+    id:           string;
+    resourceType: string;
+    active:       boolean;
+    name:         HumanName[];
+}
+
+export class HumanName {
+    use:    string;
+    family: string;
+    given:  string[];
 }

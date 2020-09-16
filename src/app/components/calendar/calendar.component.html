@@ -6,7 +6,7 @@
         <ng-template let-item pTemplate="item">
             <div class="item-item">
                 <div class="item-list-detail" style="font-size:small">
-                    <i *ngIf="item.status=='pending'" class="pi pi-exclamation-triangle"></i><i *ngIf="item.status=='booked'" class="pi pi-check-circle"></i>&nbsp;<span class="p-mb-2"><b>{{item.start | date:'medium'}}, {{item.participant[0].actor.display}}</b></span>
+                    <i *ngIf="item.status=='pending'" class="pi pi-exclamation-triangle"></i><i *ngIf="item.status=='booked'" class="pi pi-check-circle"></i>&nbsp;<span class="p-mb-2"><b>{{item.start | date:'medium'}},{{item.participant[0].actor.display}}</b></span>
                     <span class="product-category"><br/>{{item.description}}</span>
                 </div>
             </div>

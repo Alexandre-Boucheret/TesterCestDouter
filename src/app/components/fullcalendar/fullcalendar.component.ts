@@ -39,6 +39,7 @@ export class FullcalendarComponent implements OnInit, OnChanges {
         endTime : '19:00', // an end time (6pm in this example)
       },
       nowIndicator : true,
+      slotDuration : '00:15:00'
     };
     this.initEvents();
   }
