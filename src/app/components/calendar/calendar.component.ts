@@ -21,11 +21,10 @@ export class CalendarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
 
-}
-
-selectItem(event) {
-  this.selectedAppointment.emit(event.value[0]);
-}
+  selectItem(event) {
+    this.selectedAppointment.emit(event.value[0]);
+  }
 
 }
