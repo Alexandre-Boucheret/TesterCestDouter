@@ -15,10 +15,12 @@ export class ValidationRdvComponent implements OnInit {
 
   @Input() appointment: Appointment;
   @Output() refreshListes: EventEmitter<Appointment> = new EventEmitter();
+  commentaire : string ;
 
   constructor(private appRespService: AppointmentResponseService, private appService: AppointmentService) { }
 
   ngOnInit(): void {
+    this.commentaire = '';
   }
 
   initAppointmentResponse(): AppointmentResponse {
@@ -42,24 +44,22 @@ export class ValidationRdvComponent implements OnInit {
   validateAppointment() {
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'accepted';
+    appResp.comment = this.commentaire;
     this.appointment.status = 'booked';
-
     this.appService.putAppointment(this.appointment);
     this.appRespService.createAppointmentResponse(appResp);
     this.refreshListes.emit(this.appointment); 
-    
     this.appointment = null;
   }
 
   refuseAppointment(){
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'declined';
+    appResp.comment = this.commentaire;
     this.appointment.status = 'cancelled';
-
     this.appService.putAppointment(this.appointment);
     this.appRespService.createAppointmentResponse(appResp);
     this.refreshListes.emit(this.appointment);
-    
     this.appointment = null;
   }
 

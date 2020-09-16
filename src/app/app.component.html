@@ -1,12 +1,16 @@
-
 <div>
     <p-dropdown [options]="practitioners" [(ngModel)]="practitioner" optionLabel="name" (onChange)="selectedPractitionerChanged($event)"></p-dropdown>
 </div>
-<div style="display: inline-flex;">
-    <app-calendar class="componentCalendar"  [listAppointments]="listAppointmentsATraiter" [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)"></app-calendar>
-    <app-calendar class="componentCalendar" [listAppointments]="listAppointmentsAVenir" [titre]="titreListeValide" [loading]="loading"></app-calendar>
-    <div>
-        <app-fullcalendar *ngIf="listAppointmentsAVenir" [listAppointments]="listAppointmentsAVenir"></app-fullcalendar>
-    </div>
+<div style="display: flex; flex-direction: row;">
+  <div class="container">
+    <app-calendar class="componentCalendar appointmentProposed" [listAppointments]="listAppointmentsATraiter"
+      [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)">
+    </app-calendar>
+    <app-validation-rdv *ngIf="appointmentSelected" class="card validationBox" [appointment]="appointmentSelected"
+      (refreshListes)="refreshListes()">
+    </app-validation-rdv>
+  </div>
+  <div>
+    <app-fullcalendar *ngIf="listAppointmentsAVenir" [listAppointmentsPending]="listAppointmentsATraiter" [listAppointmentsBooked]="listAppointmentsAVenir" ></app-fullcalendar>
+  </div>
 </div>
-<app-validation-rdv class="card" [appointment]="appointmentSelected" (refreshListes)="refreshListes()" ></app-validation-rdv>

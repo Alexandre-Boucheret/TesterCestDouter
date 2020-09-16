@@ -9,6 +9,12 @@
     <div>
       <p>{{appointment.description}}</p>
     </div>
+    &nbsp;
+    <span>Commentaire</span>
+    <div>
+      <textarea  pInputTextarea [(ngModel)]="commentaire">
+      </textarea>
+    </div>
     <button style="margin:5px" pButton pRipple type="button" label="Refuser" class="p-button-outlined p-button-danger" (click)="refuseAppointment()"></button>
     <button style="margin:5px" pButton pRipple type="button" label="Valider" class="p-button-success" (click)="validateAppointment()"></button>
   </div>

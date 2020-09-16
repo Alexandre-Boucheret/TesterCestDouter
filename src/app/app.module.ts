@@ -15,7 +15,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import { FullcalendarComponent } from './components/fullcalendar/fullcalendar.component';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
+import { PatientService } from './services/patient.service';
 
 @NgModule({
   declarations: [
@@ -35,11 +37,14 @@ import { FormsModule } from '@angular/forms';
     OrderListModule,
     ProgressSpinnerModule,
     ButtonModule,
-    DropdownModule
+    DropdownModule,
+    InputTextareaModule,
+    FormsModule
   ],
   providers: [
     AppointmentService,
-    AppointmentResponseService
+    AppointmentResponseService,
+    PatientService
   ],
   bootstrap: [AppComponent]
 })

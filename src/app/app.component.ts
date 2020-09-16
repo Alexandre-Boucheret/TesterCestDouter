@@ -3,6 +3,7 @@ import { SelectItem } from 'primeng/api';
 import { AppointmentService } from 'src/app/services/appointment.service';
 
 import { Appointment, Practitioner } from './rest/restData';
+import { PatientService } from './services/patient.service';
 import { PractitionerService } from './services/practitioner.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   appointmentSelected: Appointment;
   loading: boolean = false;
 
-  constructor(private appService: AppointmentService, private practitionerService: PractitionerService) {
+  constructor(private appService: AppointmentService, private practitionerService: PractitionerService,private patientService : PatientService ) {
   }
 
   ngOnInit(): void {
@@ -38,6 +39,22 @@ export class AppComponent implements OnInit {
 
       this.appService.getAppointments(this.selectedPractitoner.id).subscribe(data => {
         ListAppointments = data.sort((a, b) => new Date (a.start).getTime() - new Date(b.start).getTime());
+
+        ListAppointments.forEach(d => {
+          d.participant.forEach(participant =>{
+            if(participant.actor.reference.split("/")[0]==='Patient'){
+              let  patient : string ='';
+              this.patientService.getPatient(participant.actor.reference).subscribe(data => {
+                data.name[0].given.forEach(name => {
+                  patient += " " + name;
+                });
+                participant.actor.display = patient;
+              })
+              
+            }
+          })
+        });
+
         this.listAppointmentsATraiter = new Array();
         this.listAppointmentsAVenir = new Array();
         ListAppointments.forEach(data  => {
@@ -63,8 +80,25 @@ export class AppComponent implements OnInit {
   }
 
   refreshListes(){
+    this.appointmentSelected = null;
     this.appService.getAppointments(this.selectedPractitoner.id).subscribe(data => {
       var listAppointments = data.sort((a, b) => new Date (a.start).getTime() - new Date(b.start).getTime());
+
+      listAppointments.forEach(d => {
+        d.participant.forEach(participant =>{
+          if(participant.actor.reference.split("/")[0]==='Patient'){
+            let  patient : string ='';
+            this.patientService.getPatient(participant.actor.reference).subscribe(data => {
+              data.name[0].given.forEach(name => {
+                patient += " " + name;
+              });
+              participant.actor.display = patient;
+            })
+            
+          }
+        })
+      })
+
       this.listAppointmentsATraiter = new Array();
       this.listAppointmentsAVenir = new Array();
       listAppointments.forEach(data  => {
