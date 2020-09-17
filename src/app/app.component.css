@@ -1,26 +1,32 @@
 .container {
   display: grid;
-  grid-template-columns: [debutTableau] 2fr [finColonne1 debutColonne2] 2fr [finTableau];
+  grid-template-columns: [debutTableau] 1fr [finColonne1 debutColonne2] 4fr [finTableau];
   grid-template-rows: [debutLignes] 1fr [finLigne1 debutLigne2] 1fr [finLignes];
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   width: 100%;
-  justify-content: stretch;
+  justify-items: stretch;
+  justify-content: inherit;
   margin: 0rem 0rem;
-  max-width: 100%;;
+  max-width: 100%;
+  border:2px red solid ;
 }
 .appointmentProposed {
   grid-column: debutTableau / finColonne1;
   grid-row: debutLignes / finLigne1;
   height: 100%;
+  border:2px orange solid ;
 }
-.appointmentBooked {
+.fullCalendarComponent {
   grid-column: debutColonne2/ finTableau;
-  grid-row: debutLignes / finLigne1;
+  grid-row: debutLignes / finLignes;
   height: 100%;
+  border:2px pink solid ;
 }
 .validationBox {
-  grid-column: debutTableau / finTableau;
+  grid-column: debutTableau / finColonne1;
   grid-row: debutLigne2 / finLignes;
   height: 100%;
+  width: 100%;
+  border:2px cyan solid ;
 }

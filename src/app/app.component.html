@@ -1,16 +1,23 @@
 <div>
-    <p-dropdown [options]="practitioners" [(ngModel)]="practitioner" optionLabel="name" (onChange)="selectedPractitionerChanged($event)"></p-dropdown>
-</div>
-<div style="display: flex; flex-direction: row;">
-  <div class="container">
-    <app-calendar class="componentCalendar appointmentProposed" [listAppointments]="listAppointmentsATraiter"
-      [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)">
-    </app-calendar>
-    <app-validation-rdv *ngIf="appointmentSelected" class="card validationBox" [appointment]="appointmentSelected"
-      (refreshListes)="refreshListes()">
-    </app-validation-rdv>
+  <div class="entete">
+      <p-dropdown class="drop-down" [options]="practitioners" [(ngModel)]="practitioner" optionLabel="name" (onChange)="selectedPractitionerChanged($event)"></p-dropdown>
+      <div style="flex:1"></div>
+      <img class="logo" src="../assets/img/logo.svg"/>
   </div>
-  <div>
-    <app-fullcalendar *ngIf="listAppointmentsAVenir" [listAppointmentsPending]="listAppointmentsATraiter" [listAppointmentsBooked]="listAppointmentsAVenir" ></app-fullcalendar>
+  <div style="display: flex; flex-direction: row;">
+    <div class="colonne-gauche">
+      <app-calendar class="component-calendar " [listAppointments]="listAppointmentsATraiter"
+        [titre]="titreListeAtraiter" [loading]="loading" (selectedAppointment)="getSelectedAppointment($event)">
+      </app-calendar>
+      <app-validation-rdv *ngIf="appointmentSelected" class="validation-rdv " [appointment]="appointmentSelected"
+        (refreshListes)="refreshListes()">
+      </app-validation-rdv>
+    </div>
+    <div class="colonne-droite">
+      <p-card class="card-full-calendar">
+        <app-fullcalendar *ngIf="listAppointmentsAVenir" [listAppointmentsPending]="listAppointmentsATraiter" [listAppointmentsBooked]="listAppointmentsAVenir" ></app-fullcalendar>
+      </p-card>
+    </div>
   </div>
 </div>
+
