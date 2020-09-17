@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Appointment, AppointmentResponse, Reference } from 'src/app/rest/restData';
-import { v4 as uuidv4 } from 'uuid';
+import { AppointmentResponseService } from 'src/app/services/appointment-response.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
-import {AppointmentResponseService} from 'src/app/services/appointment-response.service';
-import { Output } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class ValidationRdvComponent implements OnInit {
 
   @Input() appointment: Appointment;
   @Output() refreshListes: EventEmitter<Appointment> = new EventEmitter();
-  commentaire : string ;
+  commentaire: string ;
 
   constructor(private appRespService: AppointmentResponseService, private appService: AppointmentService) { }
 
@@ -26,11 +25,11 @@ export class ValidationRdvComponent implements OnInit {
   initAppointmentResponse(): AppointmentResponse {
     const app = {...this.appointment};
 
-    let appResp = new AppointmentResponse();
+    const appResp = new AppointmentResponse();
     appResp.resourceType = 'AppointmentResponse';
     appResp.id = uuidv4();
     appResp.appointment = new Reference();
-    appResp.appointment.reference = 'Apppointment/' + this.appointment.id;
+    appResp.appointment.reference = 'Appointment/' + this.appointment.id;
     appResp.actor = new Reference();
     this.appointment.participant.forEach(participant => {
       if (participant.actor.reference.startsWith('Patient')) {
@@ -48,11 +47,11 @@ export class ValidationRdvComponent implements OnInit {
     this.appointment.status = 'booked';
     this.appService.putAppointment(this.appointment);
     this.appRespService.createAppointmentResponse(appResp);
-    this.refreshListes.emit(this.appointment); 
+    this.refreshListes.emit(this.appointment);
     this.appointment = null;
   }
 
-  refuseAppointment(){
+  refuseAppointment() {
     const appResp = this.initAppointmentResponse();
     appResp.participantStatus = 'declined';
     appResp.comment = this.commentaire;
